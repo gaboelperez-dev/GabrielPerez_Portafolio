@@ -12,6 +12,7 @@ UserSettings/
 .idea/
 *.csproj
 *.sln
+*.fbx
 
 # OS
 .DS_Store
