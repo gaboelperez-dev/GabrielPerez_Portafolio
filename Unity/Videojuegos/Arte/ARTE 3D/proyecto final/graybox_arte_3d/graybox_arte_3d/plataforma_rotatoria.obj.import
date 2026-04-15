@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/plataforma_rotatoria.obj-11cdd562756f4713632f8a3130dbd48d.mesh"
+
+[deps]
+
+files=[ "res://.import/plataforma_rotatoria.obj-11cdd562756f4713632f8a3130dbd48d.mesh" ]
+
+source_file="res://plataforma_rotatoria.obj"
+dest_files=[ "res://.import/plataforma_rotatoria.obj-11cdd562756f4713632f8a3130dbd48d.mesh", "res://.import/plataforma_rotatoria.obj-11cdd562756f4713632f8a3130dbd48d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

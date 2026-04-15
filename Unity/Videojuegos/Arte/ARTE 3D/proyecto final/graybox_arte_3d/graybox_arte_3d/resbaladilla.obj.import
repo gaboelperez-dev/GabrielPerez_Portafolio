@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/resbaladilla.obj-ac795d9b0df64eb77729c1e6895e9efe.mesh"
+
+[deps]
+
+files=[ "res://.import/resbaladilla.obj-ac795d9b0df64eb77729c1e6895e9efe.mesh" ]
+
+source_file="res://resbaladilla.obj"
+dest_files=[ "res://.import/resbaladilla.obj-ac795d9b0df64eb77729c1e6895e9efe.mesh", "res://.import/resbaladilla.obj-ac795d9b0df64eb77729c1e6895e9efe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

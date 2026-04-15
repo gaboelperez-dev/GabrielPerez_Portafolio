@@ -1,0 +1,216 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://enemy/enemy.gd" type="Script" id=1]
+[ext_resource path="res://enemy/robot_walk.wav" type="AudioStream" id=2]
+[ext_resource path="res://enemy/sound_hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://enemy/sound_explode.wav" type="AudioStream" id=4]
+[ext_resource path="res://enemy/shine.png" type="Texture" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="CapsuleMesh" id=16]
+radius = 1.2
+mid_height = 0.3
+radial_segments = 32
+
+[sub_resource type="PrismMesh" id=17]
+size = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="Animation" id=2]
+length = 2.5
+
+[sub_resource type="Animation" id=3]
+resource_name = "explode"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_die"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SoundExplode:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SoundWalkLoop:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 2.5
+loop = true
+
+[sub_resource type="Animation" id=5]
+length = 0.625
+
+[sub_resource type="Animation" id=6]
+length = 1.66667
+loop = true
+
+[sub_resource type="SphereShape" id=7]
+radius = 0.68
+
+[sub_resource type="SphereShape" id=8]
+radius = 0.4
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 0.57253, 0.388409, 0.560511 )
+
+[sub_resource type="AudioStreamRandomPitch" id=10]
+audio_stream = ExtResource( 2 )
+
+[sub_resource type="Curve" id=11]
+max_value = 3.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0349232, 2.1123 ), 0.0, 0.0, 0, 0, Vector2( 0.151192, 0.823242 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.15
+angular_velocity = 351.05
+angular_velocity_random = 1.0
+scale_curve = SubResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+flags_unshaded = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="QuadMesh" id=15]
+material = SubResource( 14 )
+
+[node name="Enemy" type="RigidBody"]
+mode = 2
+physics_material_override = SubResource( 1 )
+custom_integrator = true
+contacts_reported = 5
+contact_monitor = true
+script = ExtResource( 1 )
+__meta__ = {
+"__editor_plugin_screen__": "3D"
+}
+
+[node name="Armature" type="Spatial" parent="."]
+
+[node name="RayFloor" type="RayCast" parent="Armature"]
+transform = Transform( 1, 0, 0, 0, 0.576528, 0.817077, 0, -0.817077, 0.576528, 0, 0.643772, 0.803052 )
+enabled = true
+cast_to = Vector3( 0, -2, 0 )
+
+[node name="RayWall" type="RayCast" parent="Armature"]
+transform = Transform( 1, 0, 0, 0, -0.0374391, 0.999299, 0, -0.999299, -0.0374391, 0, 0.643772, 0.310413 )
+enabled = true
+cast_to = Vector3( 0, -3, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Armature"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.36191, 0 )
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Armature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71399, 1.19815 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "walk-cycle"
+playback_default_blend_time = 0.5
+anims/default = SubResource( 2 )
+anims/explode = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/impact = SubResource( 5 )
+anims/walk-cycle = SubResource( 6 )
+
+[node name="Sphere1" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74185, 0.267137 )
+shape = SubResource( 7 )
+
+[node name="Sphere2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.491839, 0.74185, 0.852485 )
+shape = SubResource( 8 )
+
+[node name="Sphere3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.652943, 0.74185, 0.852485 )
+shape = SubResource( 8 )
+
+[node name="Sphere4" type="CollisionShape" parent="."]
+transform = Transform( 0.617236, 0, 0.786778, 0, 1, 0, -0.786778, 0, 0.617236, -0.0445105, 1.04515, 0.0531231 )
+shape = SubResource( 9 )
+
+[node name="Box" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678859, 0.74185, -0.335599 )
+shape = SubResource( 8 )
+
+[node name="Sound" type="Spatial" parent="."]
+
+[node name="SoundWalkLoop" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource( 10 )
+unit_db = 12.0
+max_distance = 30.0
+out_of_range_mode = 1
+doppler_tracking = 1
+
+[node name="SoundHit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 6.0
+doppler_tracking = 1
+
+[node name="SoundExplode" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 18.0
+doppler_tracking = 1
+
+[node name="Explosion" type="Particles" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 15 )

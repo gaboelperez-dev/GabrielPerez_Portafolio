@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameOver.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fondo" type="ColorRect" parent="."]
+margin_right = 1027.0
+margin_bottom = 600.0
+color = Color( 0.4, 0.537255, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.3
+margin_top = 77.0
+custom_fonts/font = SubResource( 1 )
+text = "Game over"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.255
+anchor_top = 0.308
+anchor_right = 0.72
+anchor_bottom = 0.889
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+margin_left = 214.0
+margin_top = 152.0
+margin_right = 262.0
+margin_bottom = 172.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Menu"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+margin_left = 218.0
+margin_top = 176.0
+margin_right = 257.0
+margin_bottom = 196.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Salir"
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_Salir_pressed"]
