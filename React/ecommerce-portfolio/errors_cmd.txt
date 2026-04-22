@@ -1,0 +1,6 @@
+src/data/repositories/ProductRepository.ts(1,10): error TS1484: 'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/domain/entities/CartItem.ts(1,10): error TS1484: 'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/presentation/components/ProductCard.tsx(2,10): error TS1484: 'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/presentation/store/useCartStore.ts(2,10): error TS1484: 'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/presentation/store/useCartStore.ts(3,10): error TS1484: 'CartItem' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/presentation/store/useProductStore.ts(2,10): error TS1484: 'Product' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
